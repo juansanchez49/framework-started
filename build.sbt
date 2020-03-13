@@ -1,12 +1,12 @@
-
+import play.sbt.PlayImport.{cache}
 name := "commercetools-sunrise-java-starter"
 
 version := "0.1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-val sunriseFrameworkVersion = "1.0.0-M10"
-val sunriseThemeVersion = "0.72.0"
+val sunriseFrameworkVersion = "1.0.0-M11"
+val sunriseThemeVersion = "0.73.0-SNAPSHOT"
 val sunriseEmailVersion = "0.3.0"
 
 lazy val root = (project in file("."))
@@ -15,10 +15,7 @@ lazy val root = (project in file("."))
   .settings(TestCommon.defaultSettings)
   .settings(sunriseThemeJarName in Compile := "commercetools-sunrise-theme")
 
-resolvers ++= Seq (
-  Resolver.sonatypeRepo("releases"),
-  Resolver.bintrayRepo("commercetools", "maven")
-)
+resolvers += "Local Maven Repository" at "file://Users/juansanchez/.m2/repository"
 
 libraryDependencies ++= Seq(
   cache,
@@ -31,5 +28,5 @@ libraryDependencies ++= Seq(
   "com.commercetools.sunrise.email" % "email-smtp" % sunriseEmailVersion,
   // Dependency to Contentful CMS, remove if you do not plan to use it
   "com.commercetools.sunrise.cms" % "cms-contentful" % "0.2.1",
-  "org.webjars" %% "webjars-play" % "2.5.0-2"
+  "org.webjars" %% "webjars-play" % "2.6.0"
 )
